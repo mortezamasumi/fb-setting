@@ -1,0 +1,77 @@
+{
+    "name": "mortezamasumi/fb-setting",
+    "description": "Add setting resource and manupulation to filament app",
+    "keywords": [
+        "mortezamasumi",
+        "laravel",
+        "fb-setting"
+    ],
+    "homepage": "https://github.com/mortezamasumi/fb-setting",
+    "support": {
+        "issues": "https://github.com/mortezamasumi/fb-setting/issues",
+        "source": "https://github.com/mortezamasumi/fb-setting"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Morteza Masumi",
+            "email": "morteza.masumi@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "filament/filament": "^4.0",
+        "mortezamasumi/persian": "^4.0|dev-next",
+        "spatie/laravel-package-tools": "^1.0"
+    },
+    "require-dev": {
+        "nunomaduro/collision": "^8.0",
+        "orchestra/testbench": "^10.0",
+        "pestphp/pest": "^3.0",
+        "pestphp/pest-plugin-arch": "^3.0",
+        "pestphp/pest-plugin-laravel": "^3.0",
+        "pestphp/pest-plugin-livewire": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mortezamasumi\\FbSetting\\": "src/",
+            "Mortezamasumi\\FbSetting\\Database\\Factories\\": "database/factories/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Mortezamasumi\\FbSetting\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Mortezamasumi\\FbSetting\\FbSettingServiceProvider"
+            ],
+            "aliases": {
+                "FbSetting": "Mortezamasumi\\FbSetting\\Facades\\FbSetting"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/mortezamasumi/persian"
+        }
+    ]
+}
