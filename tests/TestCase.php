@@ -14,10 +14,10 @@ use Filament\Widgets\WidgetsServiceProvider;
 use Filament\FilamentServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Livewire\LivewireServiceProvider;
-use Orchestra\Testbench\TestCase as Orchestra;
-use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
 use Mortezamasumi\FbSetting\Tests\Services\FbSettingPanelProvider;
 use Mortezamasumi\FbSetting\FbSettingServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
+use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
 
 use function Orchestra\Testbench\default_migration_path;
 
@@ -72,7 +72,7 @@ class TestCase extends Orchestra
             TablesServiceProvider::class,
             WidgetsServiceProvider::class,
             FbSettingServiceProvider::class,
-            FbSettingPanelProvider::class,
+            // FbSettingPanelProvider::class,
         ];
     }
 }
