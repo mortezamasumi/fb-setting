@@ -1,13 +1,11 @@
 <?php
 
 return [
-    'resource' => [
-        'navigation' => [
-            'label' => 'Settings',
-            'setting' => 'Setting',
-            'settings' => 'Settings',
-            'group' => 'System',
-        ],
+    'navigation' => [
+        'label' => 'Settings',
+        'setting' => 'Setting',
+        'settings' => 'Settings',
+        'group' => 'System',
     ],
     'form' => [
         'key' => 'Key',

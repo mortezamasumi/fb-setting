@@ -30,6 +30,7 @@ class FbSettingServiceProvider extends PackageServiceProvider
                     ->publishMigrations()
                     ->askToRunMigrations();
             })
+            ->hasConfigFile()
             ->hasMigrations($this->getMigrations())
             ->hasTranslations();
     }

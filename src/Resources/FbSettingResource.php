@@ -19,47 +19,47 @@ class FbSettingResource extends Resource
 
     public static function getNavigationIcon(): string
     {
-        return config('fbase.resource.settings.navigation.icon');
+        return config('fb-setting.navigation.icon');
     }
 
     public static function getNavigationSort(): ?int
     {
-        return config('fbase.resource.settings.navigation.sort');
+        return config('fb-setting.navigation.sort');
     }
 
     public static function getNavigationLabel(): string
     {
-        return __(config('fbase.resource.settings.navigation.label'));
+        return __(config('fb-setting.navigation.label'));
     }
 
     public static function getNavigationGroup(): ?string
     {
-        return __(config('fbase.resource.settings.navigation.group'));
+        return __(config('fb-setting.navigation.group'));
     }
 
     public static function getModelLabel(): string
     {
-        return __(config('fbase.resource.settings.navigation.model_label'));
+        return __(config('fb-setting.navigation.model_label'));
     }
 
     public static function getPluralModelLabel(): string
     {
-        return __(config('fbase.resource.settings.navigation.plural_model_label'));
+        return __(config('fb-setting.navigation.plural_model_label'));
     }
 
     public static function getNavigationParentItem(): ?string
     {
-        return config('fbase.resource.settings.navigation.parent_item');
+        return config('fb-setting.navigation.parent_item');
     }
 
     public static function getActiveNavigationIcon(): string|Htmlable|null
     {
-        return config('fbase.resource.settings.navigation.active_icon') ?? static::getNavigationIcon();
+        return config('fb-setting.navigation.active_icon') ?? static::getNavigationIcon();
     }
 
     public static function getNavigationBadge(): ?string
     {
-        return config('fbase.resource.settings.navigation.show_count')
+        return config('fb-setting.navigation.show_count')
             ? Persian::digit(
                 static::getModel()::where('active', true)->count(),
             )
