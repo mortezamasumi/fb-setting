@@ -30,8 +30,7 @@ class FbSettingsTable
                     ->words(5),
                 IconColumn::make('attributes')
                     ->label(__('fb-setting::fb-setting.table.attributes'))
-                    ->getStateUsing(fn (Model $record) => ! empty($record->attributes))
-                    ->trueIcon('heroicon-m-check')
+                    ->trueIcon('heroicon-o-check')
                     ->falseIcon('')
                     ->color('success'),
                 ToggleColumn::make('active')
