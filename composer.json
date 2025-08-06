@@ -22,7 +22,7 @@
     "require": {
         "php": "^8.2",
         "filament/filament": "^4.0",
-        "mortezamasumi/persian": "^4.0|dev-next",
+        "mortezamasumi/fb-persian": "^4.0|dev-main",
         "spatie/laravel-package-tools": "^1.0"
     },
     "require-dev": {
@@ -71,7 +71,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/mortezamasumi/persian"
+            "url": "https://github.com/mortezamasumi/fb-persian"
         }
     ]
 }
