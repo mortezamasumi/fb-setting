@@ -7,11 +7,11 @@ use Filament\Schemas\Schema;
 use Filament\Tables\Table;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Model;
+use Mortezamasumi\FbPersian\Facades\FbPersian;
 use Mortezamasumi\FbSetting\Models\FbSetting;
 use Mortezamasumi\FbSetting\Resources\Pages\ManageFbSettings;
 use Mortezamasumi\FbSetting\Resources\Schemas\FbSettingForm;
 use Mortezamasumi\FbSetting\Resources\Tables\FbSettingsTable;
-use Mortezamasumi\Persian\Facades\Persian;
 
 class FbSettingResource extends Resource
 {
@@ -60,7 +60,7 @@ class FbSettingResource extends Resource
     public static function getNavigationBadge(): ?string
     {
         return config('fb-setting.navigation.show_count')
-            ? Persian::digit(
+            ? FbPersian::digit(
                 static::getModel()::where('active', true)->count(),
             )
             : null;
