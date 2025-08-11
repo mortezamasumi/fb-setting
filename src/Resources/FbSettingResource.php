@@ -8,7 +8,6 @@ use Filament\Tables\Table;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Number;
-use Mortezamasumi\FbPersian\Facades\FbPersian;
 use Mortezamasumi\FbSetting\Models\FbSetting;
 use Mortezamasumi\FbSetting\Resources\Pages\ManageFbSettings;
 use Mortezamasumi\FbSetting\Resources\Schemas\FbSettingForm;
