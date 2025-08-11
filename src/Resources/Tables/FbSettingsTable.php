@@ -41,7 +41,7 @@ class FbSettingsTable
                 ReplicateAction::make()
                     ->schema([
                         TextInput::make('key')
-                            ->label('fb-setting::fb-setting.form.key')
+                            ->label(__('fb-setting::fb-setting.form.key'))
                             ->required()
                             ->unique(),
                     ])

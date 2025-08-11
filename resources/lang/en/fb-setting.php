@@ -2,9 +2,8 @@
 
 return [
     'navigation' => [
-        'label' => 'Settings',
-        'setting' => 'Setting',
-        'settings' => 'Settings',
+        'label' => 'Setting',
+        'plural_label' => 'Settings',
         'group' => 'System',
     ],
     'form' => [

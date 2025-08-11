@@ -1,13 +1,10 @@
 <?php
 
 return [
-    'resource' => [
-        'navigation' => [
-            'label' => 'تنظیمات',
-            'setting' => 'تنظیمات',
-            'settings' => 'تنظیمات',
-            'group' => 'سامانه',
-        ],
+    'navigation' => [
+        'label' => 'تنظیمات',
+        'plural_label' => 'تنظیمات',
+        'group' => 'سامانه',
     ],
     'form' => [
         'key' => 'کلید',

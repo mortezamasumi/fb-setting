@@ -7,35 +7,19 @@ use Filament\Schemas\Schema;
 use Filament\Tables\Table;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Number;
 use Mortezamasumi\FbPersian\Facades\FbPersian;
 use Mortezamasumi\FbSetting\Models\FbSetting;
 use Mortezamasumi\FbSetting\Resources\Pages\ManageFbSettings;
 use Mortezamasumi\FbSetting\Resources\Schemas\FbSettingForm;
 use Mortezamasumi\FbSetting\Resources\Tables\FbSettingsTable;
+use App;
+use BackedEnum;
+use UnitEnum;
 
 class FbSettingResource extends Resource
 {
     protected static ?string $model = FbSetting::class;
-
-    public static function getNavigationIcon(): string
-    {
-        return config('fb-setting.navigation.icon');
-    }
-
-    public static function getNavigationSort(): ?int
-    {
-        return config('fb-setting.navigation.sort');
-    }
-
-    public static function getNavigationLabel(): string
-    {
-        return __(config('fb-setting.navigation.label'));
-    }
-
-    public static function getNavigationGroup(): ?string
-    {
-        return __(config('fb-setting.navigation.group'));
-    }
 
     public static function getModelLabel(): string
     {
@@ -47,23 +31,41 @@ class FbSettingResource extends Resource
         return __(config('fb-setting.navigation.plural_model_label'));
     }
 
-    public static function getNavigationParentItem(): ?string
+    public static function getNavigationGroup(): string|UnitEnum|null
     {
-        return config('fb-setting.navigation.parent_item');
+        return __(config('fb-setting.navigation.group'));
     }
 
-    public static function getActiveNavigationIcon(): string|Htmlable|null
+    public static function getNavigationParentItem(): ?string
+    {
+        return __(config('fb-setting.navigation.parent_item'));
+    }
+
+    public static function getNavigationIcon(): string|BackedEnum|Htmlable|null
+    {
+        return config('fb-setting.navigation.icon');
+    }
+
+    public static function getActiveNavigationIcon(): string|BackedEnum|Htmlable|null
     {
         return config('fb-setting.navigation.active_icon') ?? static::getNavigationIcon();
     }
 
     public static function getNavigationBadge(): ?string
     {
-        return config('fb-setting.navigation.show_count')
-            ? FbPersian::digit(
-                static::getModel()::where('active', true)->count(),
-            )
+        return config('fb-setting.navigation.badge')
+            ? Number::format(number: static::getModel()::count(), locale: App::getLocale())
             : null;
+    }
+
+    public static function getNavigationBadgeTooltip(): ?string
+    {
+        return config('fb-setting.navigation.badge_tooltip');
+    }
+
+    public static function getNavigationSort(): ?int
+    {
+        return config('fb-setting.navigation.sort');
     }
 
     public static function getGlobalSearchResultTitle(Model $record): string|Htmlable

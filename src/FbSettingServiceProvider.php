@@ -2,15 +2,10 @@
 
 namespace Mortezamasumi\FbSetting;
 
-use Filament\Support\Assets\AlpineComponent;
-use Filament\Support\Assets\Asset;
-use Filament\Support\Assets\Css;
-use Filament\Support\Assets\Js;
-use Filament\Support\Facades\FilamentAsset;
-use Filament\Support\Facades\FilamentIcon;
-use Illuminate\Filesystem\Filesystem;
+use App\Policies\FbSettingPolicy;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Features\SupportTesting\Testable;
-use Mortezamasumi\FbSetting\Commands\FbSettingCommand;
+use Mortezamasumi\FbSetting\Models\FbSetting;
 use Mortezamasumi\FbSetting\Testing\TestsFbSetting;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
@@ -24,11 +19,9 @@ class FbSettingServiceProvider extends PackageServiceProvider
     {
         $package
             ->name(static::$name)
-            // ->hasCommands($this->getCommands())
             ->hasInstallCommand(function (InstallCommand $command) {
                 $command
-                    ->publishMigrations()
-                    ->askToRunMigrations();
+                    ->publishMigrations();
             })
             ->hasConfigFile()
             ->hasMigrations($this->getMigrations())
@@ -37,28 +30,10 @@ class FbSettingServiceProvider extends PackageServiceProvider
 
     public function packageBooted(): void
     {
-        // Handle Stubs
-        if (app()->runningInConsole()) {
-            foreach (app(Filesystem::class)->files(__DIR__.'/../stubs/') as $file) {
-                $this->publishes([
-                    $file->getRealPath() => base_path("stubs/fb-setting/{$file->getFilename()}"),
-                ], 'fb-setting-stubs');
-            }
-        }
+        Gate::policy(FbSetting::class, FbSettingPolicy::class);
 
-        // Testing
         Testable::mixin(new TestsFbSetting);
     }
-
-    // /**
-    //  * @return array<class-string>
-    //  */
-    // protected function getCommands(): array
-    // {
-    //     return [
-    //         InstallCommand::class,
-    //     ];
-    // }
 
     /**
      * @return array<string>

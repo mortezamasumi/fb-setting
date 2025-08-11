@@ -2,14 +2,14 @@
 
 return [
     'navigation' => [
-        'icon' => 'heroicon-o-cog',
-        'sort' => 9001,
-        'label' => 'fb-setting::fb-setting.navigation.label',
+        'model_label' => 'fb-setting::fb-setting.navigation.label',
+        'plural_model_label' => 'fb-setting::fb-setting.navigation.plural_label',
         'group' => 'fb-setting::fb-setting.navigation.group',
-        'model_label' => 'fb-setting::fb-setting.navigation.setting',
-        'plural_model_label' => 'fb-setting::fb-setting.navigation.settings',
-        'show_count' => true,
         'parent_item' => null,
+        'icon' => 'heroicon-o-cog',
         'active_icon' => null,
+        'badge' => true,
+        'badge_tooltip' => null,
+        'sort' => 9001,
     ],
 ];
