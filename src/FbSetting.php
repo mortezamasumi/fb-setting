@@ -2,7 +2,7 @@
 
 namespace Mortezamasumi\FbSetting;
 
-use Mortezamasumi\Fbase\Models\FbSetting as ModelsFbSetting;
+use Mortezamasumi\FbSetting\Models\FbSetting as ModelsFbSetting;
 
 class FbSetting
 {
