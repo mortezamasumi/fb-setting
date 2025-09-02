@@ -10,6 +10,6 @@ return [
         'active_icon' => null,
         'badge' => true,
         'badge_tooltip' => null,
-        'sort' => 9001,
+        'sort' => 9970,
     ],
 ];
