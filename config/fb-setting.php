@@ -7,7 +7,7 @@ return [
         'group' => 'fb-setting::fb-setting.navigation.group',
         'parent_item' => null,
         'icon' => 'heroicon-o-cog',
-        'active_icon' => null,
+        'active_icon' => 'heroicon-s-cog',
         'badge' => true,
         'badge_tooltip' => null,
         'sort' => 9970,
