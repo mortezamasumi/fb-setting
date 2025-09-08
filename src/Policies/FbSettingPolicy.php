@@ -1,71 +1,69 @@
 <?php
 
-namespace App\Policies;
+declare(strict_types=1);
+
+namespace Mortezamasumi\FbSetting\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Foundation\Auth\User as AuthUser;
 use Mortezamasumi\FbSetting\Models\FbSetting;
 
 class FbSettingPolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny($user): bool
+    public function viewAny(AuthUser $authUser): bool
     {
-        return $user->can('view_any_fb::setting');
+        return $authUser->can('ViewAny:FbSetting');
     }
 
-    public function view($user, FbSetting $fbSetting): bool
+    public function view(AuthUser $authUser, FbSetting $fbSetting): bool
     {
-        return $user->can('view_fb::setting');
+        return $authUser->can('View:FbSetting');
     }
 
-    public function create($user): bool
+    public function create(AuthUser $authUser): bool
     {
-        return $user->can('create_fb::setting');
+        return $authUser->can('Create:FbSetting');
     }
 
-    public function update($user, FbSetting $fbSetting): bool
+    public function update(AuthUser $authUser, FbSetting $fbSetting): bool
     {
-        return $user->can('update_fb::setting');
+        return $authUser->can('Update:FbSetting');
     }
 
-    public function delete($user, FbSetting $fbSetting): bool
+    public function delete(AuthUser $authUser, FbSetting $fbSetting): bool
     {
-        return $user->can('delete_fb::setting');
+        return $authUser->can('Delete:FbSetting');
     }
 
-    public function deleteAny($user): bool
+    public function restore(AuthUser $authUser, FbSetting $fbSetting): bool
     {
-        return $user->can('delete_any_fb::setting');
+        return $authUser->can('Restore:FbSetting');
     }
 
-    public function forceDelete($user, FbSetting $fbSetting): bool
+    public function forceDelete(AuthUser $authUser, FbSetting $fbSetting): bool
     {
-        return $user->can('force_delete_fb::setting');
+        return $authUser->can('ForceDelete:FbSetting');
     }
 
-    public function forceDeleteAny($user): bool
+    public function forceDeleteAny(AuthUser $authUser): bool
     {
-        return $user->can('force_delete_any_fb::setting');
+        return $authUser->can('ForceDeleteAny:FbSetting');
     }
 
-    public function restore($user, FbSetting $fbSetting): bool
+    public function restoreAny(AuthUser $authUser): bool
     {
-        return $user->can('restore_fb::setting');
+        return $authUser->can('RestoreAny:FbSetting');
     }
 
-    public function restoreAny($user): bool
+    public function replicate(AuthUser $authUser, FbSetting $fbSetting): bool
     {
-        return $user->can('restore_any_fb::setting');
+        return $authUser->can('Replicate:FbSetting');
     }
 
-    public function replicate($user, FbSetting $fbSetting): bool
+    public function reorder(AuthUser $authUser): bool
     {
-        return $user->can('replicate_fb::setting');
-    }
-
-    public function reorder($user): bool
-    {
-        return $user->can('reorder_fb::setting');
+        return $authUser->can('Reorder:FbSetting');
     }
 }
