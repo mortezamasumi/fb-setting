@@ -8,7 +8,7 @@ return [
         'parent_item' => null,
         'icon' => 'heroicon-o-cog',
         'active_icon' => 'heroicon-s-cog',
-        'badge' => true,
+        'badge' => false,
         'badge_tooltip' => null,
         'sort' => 30,
     ],
