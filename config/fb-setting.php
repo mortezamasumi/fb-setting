@@ -10,6 +10,6 @@ return [
         'active_icon' => 'heroicon-s-cog',
         'badge' => true,
         'badge_tooltip' => null,
-        'sort' => 9970,
+        'sort' => 30,
     ],
 ];
