@@ -2,18 +2,18 @@
 
 namespace Mortezamasumi\FbSetting\Resources;
 
+use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables\Table;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Number;
 use Mortezamasumi\FbSetting\Models\FbSetting;
 use Mortezamasumi\FbSetting\Resources\Pages\ManageFbSettings;
 use Mortezamasumi\FbSetting\Resources\Schemas\FbSettingForm;
 use Mortezamasumi\FbSetting\Resources\Tables\FbSettingsTable;
-use App;
-use BackedEnum;
 use UnitEnum;
 
 class FbSettingResource extends Resource
