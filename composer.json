@@ -37,12 +37,18 @@
         "psr-4": {
             "Mortezamasumi\\FbSetting\\": "src/",
             "Mortezamasumi\\FbSetting\\Database\\Factories\\": "database/factories/"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
             "Mortezamasumi\\FbSetting\\Tests\\": "tests/"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "scripts": {
         "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi",
