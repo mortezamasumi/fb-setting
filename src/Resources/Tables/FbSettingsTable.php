@@ -46,7 +46,7 @@ class FbSettingsTable
                             ->unique(),
                     ])
                     ->modalWidth('lg')
-                    ->beforeReplicaSaved(fn (Model $replica, array $data) => $replica->key = $data['key']),
+                    ->beforeReplicaSaved(fn (Model $replica, array $data) => $replica->setAttribute('key', $data['key'])),
                 EditAction::make(),
                 DeleteAction::make(),
             ]);

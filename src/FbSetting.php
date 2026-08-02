@@ -6,40 +6,50 @@ use Mortezamasumi\FbSetting\Models\FbSetting as ModelsFbSetting;
 
 class FbSetting
 {
+    /**
+     * @param  array<string, string>  $values
+     */
     public function get(string $key, mixed $default = null, ?string $attrKey = null, array $values = []): mixed
     {
-        if (! ($content = ModelsFbSetting::where('key', $key)->where('active', true)->first())) {
+        $setting = ModelsFbSetting::query()
+            ->where('key', $key)
+            ->where('active', true)
+            ->first();
+
+        if ($setting === null) {
             if (! empty($default)) {
                 if (is_array($default)) {
-                    if (empty($attrKey)) {
-                        return $default;
-                    } else {
-                        return $default[$attrKey] ?? null;
-                    }
-                } else {
-                    foreach ($values as $key => $data) {
-                        $default = str_replace(':'.$key, $data, $default ?? '');
-                    }
+                    return $attrKey === null
+                        ? $default
+                        : ($default[$attrKey] ?? null);
+                }
+
+                foreach ($values as $name => $data) {
+                    $default = str_replace(':'.$name, $data, (string) $default);
                 }
             }
 
             return $default;
         }
 
-        if (is_array($content->attributes) && count($content->attributes) > 0) {
-            if (empty($attrKey)) {
-                return $content->attributes;
-            } else {
-                return $content->attributes[$attrKey]['value'] ?? null;
+        $attributes = $setting->getAttribute('attributes');
+
+        if (is_array($attributes) && count($attributes) > 0) {
+            if ($attrKey === null) {
+                return $attributes;
             }
+
+            $attribute = $attributes[$attrKey] ?? null;
+
+            return is_array($attribute) ? ($attribute['value'] ?? null) : null;
         }
 
-        $content = $content->value ?? '';
+        $value = $setting->getAttribute('value') ?? '';
 
-        foreach ($values as $key => $data) {
-            $content = str_replace(':'.$key, $data, $content);
+        foreach ($values as $name => $data) {
+            $value = str_replace(':'.$name, $data, $value);
         }
 
-        return $content;
+        return $value;
     }
 }

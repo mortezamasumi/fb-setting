@@ -53,7 +53,7 @@ class FbSettingResource extends Resource
     public static function getNavigationBadge(): ?string
     {
         return config('fb-setting.navigation.badge')
-            ? Number::format(number: static::getModel()::count(), locale: App::getLocale())
+            ? (string) Number::format(number: static::getModel()::count(), locale: App::getLocale())
             : null;
     }
 
@@ -69,7 +69,7 @@ class FbSettingResource extends Resource
 
     public static function getGlobalSearchResultTitle(Model $record): string|Htmlable
     {
-        return $record->key;
+        return (string) $record->getAttribute('key');
     }
 
     public static function getGloballySearchableAttributes(): array

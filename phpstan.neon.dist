@@ -1,0 +1,13 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+    level: 8
+    paths:
+        - src
+    tmpDir: build/phpstan
+    ignoreErrors:
+        # localeDigit() is registered on Filament columns at runtime by
+        # fb-essentials' TableMacroServiceProvider, so PHPStan cannot resolve it.
+        - message: '#Call to an undefined method Filament\\Tables\\Columns\\TextColumn::localeDigit\(\)#'
+          path: src

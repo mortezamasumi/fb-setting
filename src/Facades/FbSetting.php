@@ -5,7 +5,7 @@ namespace Mortezamasumi\FbSetting\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static mixed get(string $key, mixed $default = null, ?string $attrKey = null, array $values = [])
+ * @method static mixed get(string $key, mixed $default = null, ?string $attrKey = null, array<string, string> $values = [])
  *
  * @see \Mortezamasumi\FbSetting\FbSetting
  */

@@ -4,12 +4,12 @@ use Illuminate\Support\Facades\Gate;
 use Mortezamasumi\FbSetting\Facades\FbSetting;
 use Mortezamasumi\FbSetting\Models\FbSetting as ModelsFbSetting;
 use Mortezamasumi\FbSetting\Policies\FbSettingPolicy;
-use Mortezamasumi\FbSetting\Resources\Pages\ManageFbSettings;
 use Mortezamasumi\FbSetting\Resources\FbSettingResource;
+use Mortezamasumi\FbSetting\Resources\Pages\ManageFbSettings;
 use Mortezamasumi\FbSetting\Tests\Services\User;
 
 beforeEach(function () {
-    Gate::before(fn() => true);
+    Gate::before(fn () => true);
     Gate::policy(ModelsFbSetting::class, FbSettingPolicy::class);
 
     /** @var Pest $this */
@@ -77,8 +77,8 @@ it('can create key-attribute setting using facade', function () {
             [
                 'key' => 'attribute-key1',
                 'value' => 'attribute value1',
-            ]
-        ]
+            ],
+        ],
     ];
 
     /** @var Pest $this */
@@ -120,10 +120,68 @@ it('can edit setting', function () {
         ->mountTableAction('edit', $record)
         ->assertActionDataSet($record->toArray())
         ->setActionData([
-            'value' => 'another test value'
+            'value' => 'another test value',
         ])
         ->callMountedAction()
         ->assertHasNoActionErrors();
 
     expect(FbSetting::get('test-key'))->toBe('another test value');
+});
+
+it('can replicate a setting with a new key', function () {
+    $record = ModelsFbSetting::create([
+        'key' => 'source-key',
+        'value' => 'test value',
+    ]);
+
+    /** @var Pest $this */
+    $this
+        ->livewire(ManageFbSettings::class)
+        ->mountTableAction('replicate', $record)
+        ->setActionData([
+            'key' => 'replicated-key',
+        ])
+        ->callMountedAction()
+        ->assertHasNoActionErrors();
+
+    expect(FbSetting::get('replicated-key'))->toBe('test value');
+});
+
+it('cannot replicate a setting with a duplicate key', function () {
+    ModelsFbSetting::create([
+        'key' => 'existing-key',
+        'value' => 'existing value',
+    ]);
+
+    $record = ModelsFbSetting::create([
+        'key' => 'source-key',
+        'value' => 'test value',
+    ]);
+
+    /** @var Pest $this */
+    $this
+        ->livewire(ManageFbSettings::class)
+        ->mountTableAction('replicate', $record)
+        ->setActionData([
+            'key' => 'existing-key',
+        ])
+        ->callMountedAction()
+        ->assertHasTableActionErrors([
+            'key' => ['unique'],
+        ]);
+});
+
+it('can deactivate a setting from the table', function () {
+    $record = ModelsFbSetting::create([
+        'key' => 'test-key',
+        'value' => 'test value',
+        'active' => true,
+    ]);
+
+    /** @var Pest $this */
+    $this
+        ->livewire(ManageFbSettings::class)
+        ->call('updateTableColumnState', 'active', $record->getKey(), false);
+
+    expect($record->refresh()->active)->toBeFalse();
 });

@@ -2,10 +2,10 @@
 
 namespace Mortezamasumi\FbSetting;
 
-use App\Policies\FbSettingPolicy;
 use Illuminate\Support\Facades\Gate;
 use Livewire\Features\SupportTesting\Testable;
 use Mortezamasumi\FbSetting\Models\FbSetting;
+use Mortezamasumi\FbSetting\Policies\FbSettingPolicy;
 use Mortezamasumi\FbSetting\Testing\TestsFbSetting;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
